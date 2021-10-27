@@ -8,20 +8,18 @@ public class VentanaAplicacion {
 
   public static void main(String[] args) {
     Button button = new Button();
-    button.setOnClickAction(new DecirHolaCuandoDanClic()); // Hijo de OnClickAction
-    button.setOnCloseAction(new DecirAdiosCuandoPulsanClose()); // Hijo de OnCloseAction
+    button.setOnClickAction(new OnClickAction() {
+      public void onClick() {
+        System.out.println("Hola, has hecho clic");
+      }
+    }); // Implementación de OnClickAction
+    button.setOnCloseAction(new DecirAdiosCuandoPulsanClose()); // Implementación de OnCloseAction
 
     // Llamada de usuario
     button.click();
     button.close();
   }
 
-  static class DecirHolaCuandoDanClic implements OnClickAction {
-    @Override
-    public void onClick() {
-      System.out.println("Hola, has hecho clic");
-    }
-  }
   static class DecirAdiosCuandoPulsanClose implements OnCloseAction {
     @Override
     public void onClose() {
